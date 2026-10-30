@@ -1,0 +1,21 @@
+每日吉卜力 / DayGhibli 图片来源说明
+
+图片目录整理自：
+https://github.com/chius-me/awesome-ghibli-images
+中文 README：
+https://github.com/chius-me/awesome-ghibli-images/blob/main/README.zh.md
+读取日期：2026-10-30
+上游 README.zh.md blob SHA：c001be7b2ae05142cc2d621536dfd04e2066662c
+
+目录包含 26 部作品、1278 个唯一图片链接。所有链接均逐项取自上游 README.zh.md，指向吉卜力官方网站 https://www.ghibli.jp/gallery/ 。本应用仅随附链接目录，按需从官方网站下载原图并在本机保存，不随应用打包电影场景图片。
+
+官方场景图片发布说明：
+https://www.ghibli.jp/info/013344/
+官方作品与图片入口：
+https://www.ghibli.jp/works/
+
+图片及电影相关权利归各自权利人所有。官方发布说明表示可在常识范围内使用；请遵守官方网站针对各作品与图片公布的使用说明。此工具用于个人桌面壁纸，不代表与吉卜力或上游仓库存在官方合作或获得背书。
+
+上游仓库的 LICENSE 文件为 CC0 1.0 Universal：
+https://github.com/chius-me/awesome-ghibli-images/blob/main/LICENSE
+仓库目录的许可不意味着第三方电影场景图片的权利被一并转让，也不应将图片标为 MIT 或无版权。
