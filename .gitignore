@@ -1,2 +1,9 @@
 .build/
 .DS_Store
+.swiftpm/
+release/
+*.zip
+*.dmg
+*.p8
+*.p12
+*.key

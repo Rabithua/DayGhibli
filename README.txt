@@ -1,4 +1,4 @@
-每日吉卜力 · 0.4.3
+每日吉卜力 · 0.5.0
 
 需要 macOS 14 或以上。当前随附的应用为 Apple Silicon 版本。
 
@@ -8,6 +8,12 @@
 3. “恢复上次壁纸”可撤销最近一次换图；“退出”关闭工具。
 4. 下载失败时，菜单会出现“查看错误…”。
 5. 菜单按“操作”“壁纸信息”“设置”分组。“壁纸信息”显示当前壁纸的作品名称，点击即用默认浏览器打开该作品的吉卜力官方介绍页面。多显示器分别显示屏幕名称与对应作品；换图或恢复后同步更新。
+6. “设置”中的“检查更新…”可手动检查新版；应用默认每天自动检查，并由 Sparkle 下载、安装签名更新。
+
+下载与更新
+正式版本：https://github.com/Rabithua/DayGhibli/releases/latest
+使用 macOS 14 或以上的 Apple Silicon Mac。下载 ZIP、解压后将应用放进“应用程序”。从 0.5.0 起支持 Sparkle 自动更新；更早版本需要手动安装一次。
+更新包使用 Developer ID 签名与 Apple 公证，Sparkle 同时验证更新列表与更新包的 Ed25519 签名。
 
 按需下载
 打开菜单、选择影片和修改设置都不会提前下载图片。手动或定时切换时才向吉卜力官网下载所需图片，全部下载并验证成功后再设置桌面。下载文件保存于 ~/Library/Application Support/DayGhibli/Wallpapers。
@@ -23,7 +29,8 @@
 自动切换需要工具保持运行。多虚拟桌面的行为由 macOS 控制，当前版本不承诺同步所有 Space。
 
 开发
-需要 Xcode 或包含 macOS SDK 的 Swift 6 工具链。./build.sh 编译并打包当前架构的应用；可用 APP_OUTPUT 和 BUILD_DIR 指定路径。swift test 运行测试。无第三方依赖。
+需要 Xcode 或包含 macOS SDK 的 Swift 6 工具链。./build.sh 编译并打包当前架构的应用；可用 APP_OUTPUT 和 BUILD_DIR 指定路径，SIGNING_IDENTITY 指定签名证书（默认 ad-hoc 供本地开发）。swift test 运行测试。
+更新框架依赖 Sparkle 2.10.1（Swift Package Manager）；许可见 Resources/Sparkle-LICENSE.txt。正式发版步骤见 RELEASING.md，签名私钥仅存本机钥匙串。
 
 验证（2026-11-02）
 35 项自动测试通过，覆盖按需下载、双屏分配、失败重试、频率日期边界、设置迁移、每屏两张保留、断开屏保护、失败跳过清理、文件清理范围，以及菜单作品页面的每屏关联、旧状态兼容、换图/恢复/重启同步和外部换图。登录启动通过替身服务验证。此前已用本机真实计时器验证共享/独立双屏切换及恢复原壁纸。

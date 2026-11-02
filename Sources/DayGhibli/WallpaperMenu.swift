@@ -5,6 +5,7 @@ import WallpaperCore
 @MainActor
 struct WallpaperMenu: View {
     @Bindable var model: WallpaperModel
+    @ObservedObject var updater: AppUpdater
 
     var body: some View {
         Group {
@@ -60,6 +61,9 @@ struct WallpaperMenu: View {
                 if model.loginNeedsApproval {
                     Button("在系统设置中允许…", action: model.openLoginSettings)
                 }
+
+                Button("检查更新…", action: updater.checkForUpdates)
+                    .disabled(!updater.canCheckForUpdates)
             }
 
             Divider()
