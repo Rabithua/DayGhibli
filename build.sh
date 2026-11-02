@@ -18,8 +18,8 @@ cat > "$app_path/Contents/Info.plist" <<'PLIST'
     <key>CFBundleDisplayName</key><string>每日吉卜力</string>
     <key>CFBundleExecutable</key><string>DayGhibli</string>
     <key>CFBundlePackageType</key><string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>0.4.1</string>
-    <key>CFBundleVersion</key><string>7</string>
+    <key>CFBundleShortVersionString</key><string>0.4.2</string>
+    <key>CFBundleVersion</key><string>8</string>
     <key>LSMinimumSystemVersion</key><string>14.0</string>
     <key>LSUIElement</key><true/>
     <key>NSHighResolutionCapable</key><true/>
