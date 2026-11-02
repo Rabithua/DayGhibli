@@ -22,7 +22,7 @@ final class ManualFlowTests: XCTestCase {
 
         let requests = await downloader.requests()
         XCTAssertTrue(requests.isEmpty)
-        XCTAssertTrue(events.snapshot().isEmpty)
+        XCTAssertEqual(events.snapshot(), ["capture"])
         XCTAssertNil(model.current)
         XCTAssertNil(model.lastChanged)
         XCTAssertEqual(model.imageCount, 1)
@@ -46,7 +46,7 @@ final class ManualFlowTests: XCTestCase {
         XCTAssertNotNil(model.lastChanged)
         XCTAssertNil(model.errorMessage)
         XCTAssertTrue(model.canRevert)
-        XCTAssertEqual(events.snapshot(), ["download:\(first.id)", "capture",
+        XCTAssertEqual(events.snapshot(), ["capture", "download:\(first.id)", "capture",
                                            "apply:\(first.id).jpg"])
         let saved = try savedState(in: directory)
         XCTAssertEqual((saved["current"] as? [String: Any])?["id"] as? String, first.id)
@@ -63,8 +63,9 @@ final class ManualFlowTests: XCTestCase {
         let requests = await downloader.requests()
         XCTAssertEqual(requests, [first.id, second.id])
         XCTAssertEqual(desktop.successfulFiles, [files[first.id]!, files[second.id]!])
-        XCTAssertEqual(events.snapshot(), ["download:\(first.id)", "capture",
+        XCTAssertEqual(events.snapshot(), ["capture", "download:\(first.id)", "capture",
                                            "apply:\(first.id).jpg",
+                                           "capture",
                                            "download:\(second.id)", "capture",
                                            "apply:\(second.id).jpg"])
         XCTAssertFalse(model.isBusy)

@@ -26,6 +26,7 @@ struct DisplayWallpaper {
 @MainActor
 protocol DesktopApplying {
     var displayIDs: [UInt32] { get }
+    func displayName(for displayID: UInt32) -> String
     func capture() -> [DesktopSnapshot]
     func apply(file: URL) throws
     func apply(assignments: [DisplayWallpaper]) throws
@@ -35,6 +36,8 @@ protocol DesktopApplying {
 extension DesktopApplying {
     // Compatibility defaults for existing single-display test doubles.
     var displayIDs: [UInt32] { [1] }
+
+    func displayName(for displayID: UInt32) -> String { "显示器 \(displayID)" }
 
     func apply(assignments: [DisplayWallpaper]) throws {
         guard let first = assignments.first else { throw DesktopError.noScreen }
@@ -46,6 +49,10 @@ extension DesktopApplying {
 struct DesktopController: DesktopApplying {
     var displayIDs: [UInt32] {
         NSScreen.screens.map { id(of: $0) }
+    }
+
+    func displayName(for displayID: UInt32) -> String {
+        NSScreen.screens.first { id(of: $0) == displayID }?.localizedName ?? "显示器 \(displayID)"
     }
 
     private func id(of screen: NSScreen) -> UInt32 {

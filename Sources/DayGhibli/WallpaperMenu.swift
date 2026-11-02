@@ -8,6 +8,14 @@ struct WallpaperMenu: View {
 
     var body: some View {
         Group {
+            if !model.currentWallpaperSources.isEmpty {
+                ForEach(model.currentWallpaperSources) { source in
+                    Link(source.title, destination: source.image.url)
+                }
+
+                Divider()
+            }
+
             Button(model.isBusy ? "正在更换…" : "换一张") {
                 Task { await model.changeNow() }
             }
@@ -59,7 +67,10 @@ struct WallpaperMenu: View {
             }
             .keyboardShortcut("q")
         }
-        .onAppear { model.refreshLoginItemStatus() }
+        .onAppear {
+            model.refreshLoginItemStatus()
+            model.refreshWallpaperSources()
+        }
     }
 
     private func showError() {
