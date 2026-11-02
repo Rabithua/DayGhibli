@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="yes"?><!-- sparkle-sign-warning:
+IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
+--><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>每日吉卜力</title>
+        <item>
+            <title>0.5.0</title>
+            <pubDate>Mon, 02 Nov 2026 17:02:30 +0800</pubDate>
+            <link>https://github.com/Rabithua/DayGhibli</link>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>0.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<h3>每日吉卜力 0.5.0</h3><ul><li>新增 Sparkle 自动更新及“检查更新…”入口。</li><li>原生菜单按操作、壁纸信息、设置分组。</li><li>点击壁纸作品名打开吉卜力官方作品介绍。</li></ul><p>需要 macOS 14 或以上，Apple Silicon。</p>
+]]></description>
+            <enclosure url="https://github.com/Rabithua/DayGhibli/releases/download/v0.5.0/DayGhibli-0.5.0-arm64.zip" length="1337403" type="application/octet-stream" sparkle:edSignature="BGJKPJJ2lC5y2cNYz0sQ1CybAXBMS6nsJxm0Ja8ce3pXlOI0BOerVVu9tmP5o1PyBIqNEDrErXHYDPSyBgitDg=="></enclosure>
+        </item>
+    </channel>
+</rss><!-- sparkle-signatures:
+edSignature: VE4uu6/aDyc5ya1OsZsyrrHJwuYCo+5S+26g0S5OReeiZJAO1M6NCwahVQR9OgauySkJ8ie/K/qmPQuhG9+XAQ==
+length: 1540
+-->
