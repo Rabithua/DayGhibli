@@ -28,6 +28,10 @@ final class WallpaperSourceTests: XCTestCase {
         assertSources(model, [11: first, 22: second])
         XCTAssertEqual(model.currentWallpaperSources.first { $0.id == 11 }?.displayName, "Mi Monitor")
         XCTAssertEqual(model.currentWallpaperSources.first { $0.id == 22 }?.displayName, "Wokyis")
+        XCTAssertEqual(model.currentWallpaperSources.first { $0.id == 11 }?.image.workURL.absoluteString,
+                       "https://www.ghibli.jp/works/totoro/")
+        XCTAssertEqual(model.currentWallpaperSources.first { $0.id == 22 }?.image.workURL.absoluteString,
+                       "https://www.ghibli.jp/works/chihiro/")
         XCTAssertEqual(model.currentWallpaperSources.first { $0.id == 11 }?.title, "Mi Monitor：龙猫")
         XCTAssertEqual(model.currentWallpaperSources.first { $0.id == 22 }?.title, "Wokyis：千与千寻")
         model.refreshWallpaperSources()
@@ -68,7 +72,7 @@ final class WallpaperSourceTests: XCTestCase {
         XCTAssertNil(model.errorMessage)
     }
 
-    func testSharedImageProducesTheSameOriginalURLForBothDisplays() async throws {
+    func testSharedImageUsesTheSameWorkPageForBothDisplays() async throws {
         let fixture = try SourceFixture()
         defer { fixture.cleanUp() }
         let desktop = SourceDesktop(files: fixture.externalFiles)
@@ -82,6 +86,7 @@ final class WallpaperSourceTests: XCTestCase {
         let image = try XCTUnwrap(downloads.first?.image)
         assertSources(model, [11: image, 22: image])
         XCTAssertEqual(Set(model.currentWallpaperSources.map { $0.image.url }), [image.url])
+        XCTAssertEqual(Set(model.currentWallpaperSources.map { $0.image.workURL }), [image.workURL])
         XCTAssertNil(model.errorMessage)
     }
 

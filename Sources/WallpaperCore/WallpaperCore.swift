@@ -5,6 +5,11 @@ public struct Wallpaper: Codable, Identifiable, Equatable, Sendable {
     public let filmID: String
     public let filmTitle: String
     public let url: URL
+
+    public var workURL: URL {
+        URL(string: "https://www.ghibli.jp/works/")!
+            .appendingPathComponent(filmID, isDirectory: true)
+    }
 }
 
 public struct FilmOption: Identifiable, Sendable {

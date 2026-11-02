@@ -35,7 +35,7 @@ struct WallpaperMenu: View {
             if !model.currentWallpaperSources.isEmpty {
                 Section("壁纸信息") {
                     ForEach(model.currentWallpaperSources) { source in
-                        Link(source.title, destination: source.image.url)
+                        Link(source.title, destination: source.image.workURL)
                     }
                 }
             }
