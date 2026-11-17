@@ -6,6 +6,31 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>每日吉卜力</title>
         <item>
+            <title>0.6.1</title>
+            <pubDate>Tue, 17 Nov 2026 16:12:00 +0800</pubDate>
+            <link>https://github.com/Rabithua/DayGhibli</link>
+            <sparkle:version>12</sparkle:version>
+            <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>body{font-family:-apple-system,sans-serif;font-size:13px;line-height:1.5;margin:0}</style>
+</head>
+<body>
+<h2>每日吉卜力 0.6.1</h2>
+<ul>
+<li>修复：「登录时启动」开关在 macOS 26 及以上系统点击无反应的问题（初始状态判定错误）</li>
+<li>全新应用图标：全出血分层设计，系统仅施加圆角，不再附加底板材质</li>
+</ul>
+</body>
+</html>
+]]></description>
+            <enclosure url="https://github.com/Rabithua/DayGhibli/releases/download/v0.6.1/DayGhibli-0.6.1-arm64.zip" length="2500991" type="application/octet-stream" sparkle:edSignature="KqfW6nfH7vUIrWXphixs/uwpWPYHF/IG5LSCC5Aujkmr25D1dnXgJXPWGxyE7rfGFI4o+Na/kCuy+wl4u1BvDw=="/>
+        </item>
+        <item>
             <title>0.6.0</title>
             <pubDate>Tue, 17 Nov 2026 15:13:12 +0800</pubDate>
             <link>https://github.com/Rabithua/DayGhibli</link>
@@ -46,6 +71,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: aFZuyRVW+zEfgycQZDjQto1DEBYnbnUy/10jvMnIR0odPXO++QeccBjKQx+e2BY/zT9GPbo8+JaCPC1Sk7u8AA==
-length: 2792
+edSignature: SpHRiQ4lwF/Zy2RnTrPxOFyfaTd2N5JlNVvpinn9UDP8t2f7p6C8aeEJ2FELV1K6Jg14OHDL4cuaK5NIblV/Cg==
+length: 4064
 -->
