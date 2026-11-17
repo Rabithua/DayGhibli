@@ -10,7 +10,8 @@ binary_dir="$(swift build --package-path "$task_root" --scratch-path "$task_scra
 mkdir -p "$app_path/Contents/MacOS" "$app_path/Contents/Resources" "$app_path/Contents/Frameworks"
 cp "$binary_dir/DayGhibli" "$app_path/Contents/MacOS/DayGhibli"
 cp "$task_root/Resources/catalog.json" "$task_root/Resources/SourceNotice.txt" \
-    "$task_root/Resources/Sparkle-LICENSE.txt" "$app_path/Contents/Resources/"
+    "$task_root/Resources/Sparkle-LICENSE.txt" "$task_root/Resources/AppIcon.icns" \
+    "$task_root/Resources/MenuBarIcon.png" "$app_path/Contents/Resources/"
 sparkle_framework="$task_scratch/artifacts/sparkle/Sparkle/Sparkle.xcframework/macos-arm64_x86_64/Sparkle.framework"
 if [[ ! -d "$sparkle_framework" ]]; then
     printf 'Sparkle framework not found: %s\n' "$sparkle_framework" >&2
@@ -26,9 +27,10 @@ cat > "$app_path/Contents/Info.plist" <<'PLIST'
     <key>CFBundleName</key><string>每日吉卜力</string>
     <key>CFBundleDisplayName</key><string>每日吉卜力</string>
     <key>CFBundleExecutable</key><string>DayGhibli</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
     <key>CFBundlePackageType</key><string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>0.5.0</string>
-    <key>CFBundleVersion</key><string>10</string>
+    <key>CFBundleShortVersionString</key><string>0.6.0</string>
+    <key>CFBundleVersion</key><string>11</string>
     <key>LSMinimumSystemVersion</key><string>14.0</string>
     <key>LSUIElement</key><true/>
     <key>NSHighResolutionCapable</key><true/>
