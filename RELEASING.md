@@ -2,7 +2,7 @@
 
 更新源为仓库根目录的 `appcast.xml`，下载包放在 GitHub Releases。应用默认每天检查更新，并通过 Sparkle 自动下载和安装。
 
-[当前正式版](https://github.com/Rabithua/DayGhibli/releases/latest) · [0.5.0 验证记录](docs/verification-0.5.0.md)
+[当前正式版](https://github.com/Rabithua/DayGhibli/releases/latest) · [0.5.0 验证记录](docs/verification-0.5.0.md) · [0.6.0 验证记录](docs/verification-0.6.0.md)
 
 1. 修改 `build.sh` 中的版本号和 build number；build number 必须递增。
 2. 使用 `SIGNING_IDENTITY='Developer ID Application: …' BUILD_DIR=… APP_OUTPUT=… ./build.sh` 构建。脚本会嵌入 Sparkle、从内到外签名并验证应用。
