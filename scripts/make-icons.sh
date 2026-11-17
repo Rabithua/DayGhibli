@@ -1,23 +1,28 @@
 #!/bin/bash
-# Regenerate the committed icon assets:
-#   Resources/AppIcon.icns    - irregular-shape app icon (transparent margins, no mask)
+# Regenerate the icon assets:
+#   Resources/AppIcon.icns    - full-bleed 1024x1024 app icon (fallback only)
 #   Resources/MenuBarIcon.png - 64 px-high transparent menu bar template icon
+#
+# The icon macOS actually ships is built at ./build.sh time from
+# Resources/AppIcon.icon (a layered .icon directory compiled with actool into
+# Assets.car). This script exists to regenerate the committed-looking
+# AppIcon.icns fallback and the menu bar icon; the icns it produces is NOT
+# copied into the app bundle unless you re-add that copy to build.sh.
 #
 # Usage: scripts/make-icons.sh
 #
 # Inputs (already committed): Resources/AppIconSource.png, Resources/MenuBarIcon.svg
-# Requires: swift, sips, iconutil (stock macOS toolchain).
+# Requires: swift, sips, iconutil, xcrun actool (stock macOS toolchain).
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 scratch="$(mktemp -d)"
 trap 'rm -rf "$scratch"' EXIT
 
-# 1. Compose the 1024x1024 transparent master: content scaled so its longest
-#    side is <= 1000 px, centered, >= 12 px transparent margin, silhouette intact.
-master_png="$scratch/AppIcon.master.png"
-swift "$repo_root/scripts/compose-icon-master.swift" \
-    "$repo_root/Resources/AppIconSource.png" "$master_png"
+# 1. The app-icon source is a 1024x1024 fully opaque, full-bleed square: the
+#    black plate IS the icon body. Use it verbatim as the master - no scaling,
+#    no margins, no mask; the system applies the rounded-corner shape.
+master_png="$repo_root/Resources/AppIconSource.png"
 
 # 2. Scribe the full iconset from the master with sips.
 iconset="$scratch/AppIcon.iconset"
@@ -37,7 +42,7 @@ done <<'SIZES'
 1024|icon_512x512@2x.png
 SIZES
 
-# 3. Pack the iconset into the committed icns.
+# 3. Pack the iconset into the fallback icns.
 iconutil -c icns "$iconset" -o "$repo_root/Resources/AppIcon.icns"
 
 # 4. Render the menu bar icon from the SVG.

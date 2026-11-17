@@ -10,7 +10,7 @@ binary_dir="$(swift build --package-path "$task_root" --scratch-path "$task_scra
 mkdir -p "$app_path/Contents/MacOS" "$app_path/Contents/Resources" "$app_path/Contents/Frameworks"
 cp "$binary_dir/DayGhibli" "$app_path/Contents/MacOS/DayGhibli"
 cp "$task_root/Resources/catalog.json" "$task_root/Resources/SourceNotice.txt" \
-    "$task_root/Resources/Sparkle-LICENSE.txt" "$task_root/Resources/AppIcon.icns" \
+    "$task_root/Resources/Sparkle-LICENSE.txt" \
     "$task_root/Resources/MenuBarIcon.png" "$app_path/Contents/Resources/"
 sparkle_framework="$task_scratch/artifacts/sparkle/Sparkle/Sparkle.xcframework/macos-arm64_x86_64/Sparkle.framework"
 if [[ ! -d "$sparkle_framework" ]]; then
@@ -19,6 +19,18 @@ if [[ ! -d "$sparkle_framework" ]]; then
 fi
 rm -rf "$app_path/Contents/Frameworks/Sparkle.framework"
 ditto "$sparkle_framework" "$app_path/Contents/Frameworks/Sparkle.framework"
+
+# Compile the layered .icon app icon into Assets.car (plus a fallback
+# AppIcon.icns) directly inside bundle Resources. The source is full-bleed:
+# the system applies only the rounded-corner shape, no glass plate.
+actool_bin="$(xcrun -f actool)"
+actool_scratch="$(mktemp -d)"
+trap 'rm -rf "$actool_scratch"' EXIT
+"$actool_bin" --compile "$app_path/Contents/Resources" \
+    --platform macosx --minimum-deployment-target 14.0 \
+    --app-icon AppIcon \
+    --output-partial-info-plist "$actool_scratch/partial-info.plist" \
+    "$task_root/Resources/AppIcon.icon"
 cat > "$app_path/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -28,9 +40,10 @@ cat > "$app_path/Contents/Info.plist" <<'PLIST'
     <key>CFBundleDisplayName</key><string>每日吉卜力</string>
     <key>CFBundleExecutable</key><string>DayGhibli</string>
     <key>CFBundleIconFile</key><string>AppIcon</string>
+    <key>CFBundleIconName</key><string>AppIcon</string>
     <key>CFBundlePackageType</key><string>APPL</string>
-    <key>CFBundleShortVersionString</key><string>0.6.0</string>
-    <key>CFBundleVersion</key><string>11</string>
+    <key>CFBundleShortVersionString</key><string>0.6.1</string>
+    <key>CFBundleVersion</key><string>12</string>
     <key>LSMinimumSystemVersion</key><string>14.0</string>
     <key>LSUIElement</key><true/>
     <key>NSHighResolutionCapable</key><true/>
