@@ -30,10 +30,9 @@ struct LoginItemController: LoginItemManaging {
         switch service.status {
         case .enabled, .requiresApproval:
             if !enabled { try service.unregister() }
-        case .notRegistered:
+        case .notRegistered, .notFound:
+            // macOS 26+ 初始状态可能为 .notFound，此时 register() 仍可成功。
             if enabled { try service.register() }
-        case .notFound:
-            throw LoginItemError.serviceNotFound
         @unknown default:
             throw LoginItemError.unknownStatus
         }
